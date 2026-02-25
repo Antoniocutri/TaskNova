@@ -6,6 +6,7 @@ use App\TaskPriority;
 use App\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
@@ -26,4 +27,13 @@ class Task extends Model
         'priority' => TaskPriority::class,
         'due_date' => 'date',
     ];
+
+    /**
+    * Get the user that owns the task.
+    */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
