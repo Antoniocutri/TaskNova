@@ -2,9 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router'
+import router from './router/router'
 
 function App() {
-    return <h1>Ciao da React + Laravel 🚀</h1>;
+  return(
+    <>
+      <RouterProvider router={router}/>
+    </>
+  );
 }
 
 createRoot(document.getElementById('root')).render(
