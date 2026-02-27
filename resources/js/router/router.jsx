@@ -4,6 +4,7 @@ import Homepage from "../views/homepage";
 import Layout from "../components/layouts/Layout";
 import routes from "./routes";
 import LoginPage from "../views/auth/LoginPage";
+import RegisterPage from "../views/auth/RegisterPage";
 
 const router = createBrowserRouter([
     {
@@ -19,10 +20,10 @@ const router = createBrowserRouter([
     {
         path: "/auth",
         children:[
-            /*{
+            {
                 path: routes.register,
                 Component: RegisterPage,
-            },*/
+            },
             {
                 path: routes.login,
                 Component: LoginPage,
