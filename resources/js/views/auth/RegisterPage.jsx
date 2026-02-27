@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import routes from "../../router/routes";
 
 export default function RegisterPage() {
 
@@ -101,10 +102,18 @@ export default function RegisterPage() {
                             )}
                         </div>
 
-                        <button
-                            className="w-full py-3 rounded-xl btn btn-primary">
-                            Registrati
-                        </button>
+                        <div className="flex justify-between items-end ">
+                            <div className="w-20">
+                            </div>
+
+                            <button
+                                className="w-50 py-3 rounded-xl btn btn-primary">
+                                Registrati
+                            </button>
+
+                            <a href={routes.login} className="ms-5">Login</a>
+                        </div>
+
                     </form>
                 </section>
             </main>

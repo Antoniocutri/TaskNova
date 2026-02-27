@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import routes from "../../router/routes";
 
 export default function LoginPage() {
 
@@ -64,11 +65,21 @@ export default function LoginPage() {
             )}
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-full py-3 rounded-xl shadow">
-            Accedi
-          </button>
+          <div className="flex justify-between items-end ">
+
+            <div className="w-48">
+            </div>
+
+            <button
+                type="submit"
+                className="btn btn-primary w-50 py-3 rounded-xl shadow">
+                Accedi
+            </button>
+
+
+            <a href={routes.register} className="ms-5">Registrati</a>
+
+          </div>
         </form>
       </section>
     </main>
