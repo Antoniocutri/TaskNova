@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { useNavigate } from "react-router-dom";
+import routes from "../router/routes";
 
- function Homepage() {
+
+
+function Homepage() {
+    const navigate = useNavigate()
     return(
-        <button class="btn btn-secondary">Homepage</button>
+        <>
+            <button className="btn btn-secondary" onClick={() => navigate(routes.login)}>Homepage</button>
+            <button className="btn btn-secondary" onClick={() => navigate(routes.register)}>registarti</button>
+        </>
     )
 }
 
