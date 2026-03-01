@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import routes from "../router/routes";
+import api from "../axios/api";
 
 
 
@@ -13,7 +14,14 @@ function Homepage() {
 
     const navigate = useNavigate()
 
-    const onSubmit = ()=>{
+    const onSubmit = async () =>{
+        await api.get("/sanctum/csrf-cookie");
+
+        await api.post("/logout");
+
+        console.log('logout')
+
+        navigate('/')
         console.log('cisojhsfii')
     };
 
