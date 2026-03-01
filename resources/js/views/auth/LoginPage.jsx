@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import routes from "../../router/routes";
+import api from "../../axios/api";
 
 export default function LoginPage() {
 
@@ -10,12 +11,26 @@ export default function LoginPage() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+      mode: "onBlur"
+    });
 
     const navigate = useNavigate()
 
-    const onSubmit = ()=>{
-        console.log('adif')
+    const onSubmit = async (e) =>{
+      const email = e.email;
+      const password = e.password;
+
+      await api.get("/sanctum/csrf-cookie");
+
+      // Login
+      await api.post("/login", {
+        email,
+        password,
+      });
+      console.log('fatto')
+
+      navigate('/')
     };
 
   return (
@@ -32,6 +47,7 @@ export default function LoginPage() {
             <input
               type="email"
               className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
+              name="email"
               {...register("email", {
                 required: "L'email è obbligatoria",
               })}
@@ -50,6 +66,7 @@ export default function LoginPage() {
             <input
               type="password"
               className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
+              name="password"
               {...register("password", {
                 required: "La password è obbligatoria",
                 minLength: {
