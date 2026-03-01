@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
+import api from "../../axios/api";
 
 export default function RegisterPage() {
 
@@ -9,12 +10,33 @@ export default function RegisterPage() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+        watch,
+    } = useForm({
+        mode:"onBlur"
+    });
 
     const navigate = useNavigate()
 
-    const onSubmit = ()=>{
-        console.log('cisojhsfii')
+    const password = watch("password");
+
+    const onSubmit = async (e) =>{
+        const name = e.name;
+        const email = e.email;
+        const password = e.password;
+        const password_confirmation = e.password_confirmation;
+
+        await api.get("/sanctum/csrf-cookie");
+
+        // Login
+        await api.post("/register", {
+            name,
+            email,
+            password,
+            password_confirmation
+        });
+        console.log('ok')
+
+        navigate('/')
     };
 
 
@@ -30,44 +52,14 @@ export default function RegisterPage() {
                             <label className="flex items-center gap-2 mb-1 font-medium"> <FaUser /> Nome </label>
                             <input
                                 type="text"
-                                name="first_name"
+                                name="name"
                                 className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
-                                {...register("first_name", {
+                                {...register("name", {
                                     required: "This film is required"
                                 })}
                             />
-                            {errors.first_name && (
-                                <p role="alert" className="text-red-400 text-sm mt-1">{errors.first_name.message}</p>
-                            )}
-                        </div>
-
-                        <div>
-                            <label className="flex items-center gap-2 mb-1 font-medium"> <FaUser /> Cognome </label>
-                            <input
-                                type="text"
-                                name="last_name"
-                                className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
-                                {...register("last_name", {
-                                    required: "This film is required"
-                                })}
-                            />
-                            {errors.last_name && (
-                                <p role="alert" className="text-red-400 text-sm mt-1">{errors.last_name.message}</p>
-                            )}
-                        </div>
-
-                        <div>
-                            <label className="flex items-center gap-2 mb-1 font-medium"> <FaUser /> Username </label>
-                            <input
-                                type="text"
-                                name="username"
-                                className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
-                                {...register("username", {
-                                    required: "This film is required"
-                                })}
-                            />
-                            {errors.username && (
-                                <p role="alert" className="text-red-400 text-sm mt-1">{errors.username.message}</p>
+                            {errors.name && (
+                                <p role="alert" className="text-red-400 text-sm mt-1">{errors.name.message}</p>
                             )}
                         </div>
 
@@ -99,6 +91,25 @@ export default function RegisterPage() {
                             />
                             {errors.password && (
                                 <p role="alert" className="text-red-400 text-sm mt-1">{errors.password.message}</p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="flex items-center gap-2 mb-1 font-medium"> <FaLock /> Conferma Password </label>
+                            <input
+                                type="password"
+                                name="password_confirmation"
+                                className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
+                                {...register("password_confirmation", {
+                                    required: "This film is required", 
+                                    minLength: 8,
+                                    validate: value =>
+                                        value === password || "Le password devono coincidere"
+                                })}
+                                
+                            />
+                            {errors.password_confirmation && (
+                                <p role="alert" className="text-red-400 text-sm mt-1">{errors.password_confirmation.message}</p>
                             )}
                         </div>
 
