@@ -4,11 +4,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
 import router from './router/router'
+import { UserContextProvider } from "./context/UserContext";
 
 function App() {
   return(
     <>
-      <RouterProvider router={router}/>
+      <UserContextProvider>
+        <RouterProvider router={router}/>
+      </UserContextProvider>
     </>
   );
 }
