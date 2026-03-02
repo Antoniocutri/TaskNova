@@ -5,20 +5,28 @@ import Layout from "../components/layouts/Layout";
 import routes from "./routes";
 import LoginPage from "../views/auth/LoginPage";
 import RegisterPage from "../views/auth/RegisterPage";
+import ProtectedRoute from "../components/middlware/ProtectedRoutes";
+import GuestRoute from "../components/middlware/GuestRoutes";
 
 const router = createBrowserRouter([
     {
         path: routes.home,
         Component: Layout,
         children: [
-                {
-                    path: routes.home,
-                    Component: Homepage
-            }
-        ]
+            {
+                element: <ProtectedRoute/>,
+                children: [
+                    {
+                        path: routes.home,
+                        Component: Homepage
+                    },
+                ],
+            },
+        ],
     },
     {
         path: "/auth",
+        element: <GuestRoute/>,
         children:[
             {
                 path: routes.register,
