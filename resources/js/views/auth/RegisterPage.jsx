@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
-import api from "../../axios/api";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export default function RegisterPage() {
 
@@ -19,20 +20,15 @@ export default function RegisterPage() {
 
     const password = watch("password");
 
+    const {signUp} = useContext(UserContext)
+
     const onSubmit = async (e) =>{
-        const name = e.name;
-        const email = e.email;
-        const password = e.password;
-        const password_confirmation = e.password_confirmation;
 
-        await api.get("/sanctum/csrf-cookie");
-
-        // Login
-        await api.post("/register", {
-            name,
-            email,
-            password,
-            password_confirmation
+        await signUp({
+            name: e.name,
+            email: e.email,
+            password: e.password,
+            password_confirmation: e.password_confirmation
         });
         console.log('ok')
 

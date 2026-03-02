@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import routes from "../../router/routes";
-import api from "../../axios/api";
+import { UserContext } from "../../context/UserContext";
 
 export default function LoginPage() {
 
@@ -17,17 +17,15 @@ export default function LoginPage() {
 
     const navigate = useNavigate()
 
-    const onSubmit = async (e) =>{
-      const email = e.email;
-      const password = e.password;
+    const {login} = useContext(UserContext)
 
-      await api.get("/sanctum/csrf-cookie");
+    const onSubmit = async (e) => {
 
-      // Login
-      await api.post("/login", {
-        email,
-        password,
+      await login({
+        email: e.email,
+        password: e.password,
       });
+
       console.log('fatto')
 
       navigate('/')

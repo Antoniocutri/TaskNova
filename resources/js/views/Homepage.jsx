@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import routes from "../router/routes";
-import api from "../axios/api";
+import { UserContext } from "../context/UserContext";
 
 
 
@@ -14,23 +14,28 @@ function Homepage() {
 
     const navigate = useNavigate()
 
-    const onSubmit = async () =>{
-        await api.get("/sanctum/csrf-cookie");
+    const {user, signOut} = useContext(UserContext)
 
-        await api.post("/logout");
+    const handleLogout = async () =>{
 
-        console.log('logout')
-
-        navigate('/')
-        console.log('cisojhsfii')
+        await signOut();
+        navigate(routes.login);
     };
 
     return(
         <>
-            <button className="btn btn-primary" onClick={() => navigate(routes.login)}>Homepage</button>
-            <button className="btn btn-secondary" onClick={() => navigate(routes.register)}>registarti</button>
-
-            <form className="btn btn-error" onSubmit={handleSubmit(onSubmit)}>Logout</form>
+            {(!user && (
+                <> 
+                    <button className="btn btn-primary" onClick={() => navigate(routes.login)}>Homepage</button>
+                    <button className="btn btn-secondary" onClick={() => navigate(routes.register)}>registarti</button>
+                </>
+            )) || (
+                <>
+                    <form  onSubmit={handleSubmit(handleLogout)}>
+                        <button className="btn btn-error">Logout</button>
+                    </form>
+                </>
+            )}
         </>
     )
 }
