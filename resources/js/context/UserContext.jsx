@@ -5,6 +5,7 @@ export const UserContext = createContext()
 
 export function UserContextProvider({children}) {
     const [user, setUser] = useState()
+    const [loading, setLoading] = useState(true);
 
     const getUser = async () => {
         try {
@@ -12,6 +13,8 @@ export function UserContextProvider({children}) {
             setUser(response.data);
         } catch {
             setUser(null);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -47,7 +50,7 @@ export function UserContextProvider({children}) {
 
     return(
         <>
-            <UserContext.Provider value={{user, signOut, signUp, login, getUser}}>
+            <UserContext.Provider value={{user, loading, signOut, signUp, login, getUser}}>
                 {children}
             </UserContext.Provider>
         </>
