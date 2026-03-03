@@ -20,7 +20,7 @@
             </style>
         @endif
     </head>
-    <body>
+    <body class="background">
         <div id="root"></div>
     </body>
 </html>
