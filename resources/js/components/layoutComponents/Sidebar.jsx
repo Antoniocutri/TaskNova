@@ -3,6 +3,7 @@ import { LayoutDashboard, ListTodo, PlusCircle, LogOut } from "lucide-react"
 import { UserContext } from "../../context/UserContext"
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
+import TaskModal from "../../views/partial/TaskModal";
 
 export default function Sidebar() {
     const {
@@ -25,6 +26,7 @@ export default function Sidebar() {
     ]
 
     return (
+        <>
         <div className="hidden md:flex flex-col justify-between h-screen w-64 bg-slate-900 text-slate-200 shadow-lg">
 
             {/* Top Section */}
@@ -55,9 +57,10 @@ export default function Sidebar() {
                             
                         )
                     })}
-                     <li key="newTask">
+                    <li key="newTask">
                         <button
                             className="flex items-center gap-3 w-full px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all"
+                            onClick={()=>document.getElementById('create_task').showModal()}
                         >
                             <PlusCircle size={18} />
                             New Task
@@ -66,6 +69,8 @@ export default function Sidebar() {
                    
                 </ul>
             </div>
+            
+
 
             {/* Bottom Section */}
             <div className="p-4 border-t border-slate-800">
@@ -79,5 +84,9 @@ export default function Sidebar() {
                 </form>
             </div>
         </div>
+
+        {/* create_task modal */}
+        <TaskModal/>
+        </>
     )
 }
