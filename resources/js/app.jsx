@@ -5,12 +5,15 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
 import router from './router/router'
 import { UserContextProvider } from "./context/UserContext";
+import { ToastContextProvider } from "./context/ToastContext";
 
 function App() {
   return(
     <>
       <UserContextProvider>
-        <RouterProvider router={router}/>
+        <ToastContextProvider>
+          <RouterProvider router={router}/>
+        </ToastContextProvider>
       </UserContextProvider>
     </>
   );
