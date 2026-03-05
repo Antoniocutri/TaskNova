@@ -1,9 +1,14 @@
 import { Plus } from "lucide-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { useForm } from "react-hook-form";
+import api from "../../axios/api";
+import { useToast } from "../../context/ToastContext";
 
 function TaskModal() {
+
+    const [successMessage, setSuccessMessage] = useState("")
+    const { addToast } = useToast();
 
     const {
         register,
@@ -20,10 +25,20 @@ function TaskModal() {
     }
 
     
-    const onSubmit = async (e) => {
+    const onSubmit = async (data) => {
+        console.log(data)
+        try {
+            const response = await api.post('/api/tasks', data)
 
-        console.log(e)
-        closeModal()
+            addToast("Task creato correttamente!");
+
+            console.log(response.data)
+            closeModal()
+        } catch (error) {
+            addToast("Errore durante la creazione della task", "error");
+            console.error(error.response.data)
+        }
+        
     };
 
     return(
@@ -68,6 +83,7 @@ function TaskModal() {
                                 placeholder="Task description"
                                 className="textarea textarea-bordered w-full"
                                 rows="3"
+                                {...register("description")}
                             ></textarea>
                         </div>
 
