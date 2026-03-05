@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\RepositoryInterface;
 use App\Models\Task;
-use App\RepositoryInterface;
 
 class TaskRepository implements RepositoryInterface
 {
