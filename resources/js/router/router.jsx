@@ -7,6 +7,7 @@ import LoginPage from "../views/auth/LoginPage";
 import RegisterPage from "../views/auth/RegisterPage";
 import ProtectedRoute from "../components/middlware/ProtectedRoutes";
 import GuestRoute from "../components/middlware/GuestRoutes";
+import TasksPage from "../views/TasksPage";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
                     {
                         path: routes.home,
                         Component: Homepage
+                    },
+                    {
+                        path: routes.tasks,
+                        Component: TasksPage,
                     },
                 ],
             },
