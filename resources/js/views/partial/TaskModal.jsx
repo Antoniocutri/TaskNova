@@ -1,13 +1,10 @@
 import { Plus } from "lucide-react";
-import React, { useContext, useState } from "react";
-import ReactDOM from "react-dom/client";
 import { useForm } from "react-hook-form";
 import api from "../../axios/api";
 import { useToast } from "../../context/ToastContext";
 
 function TaskModal() {
 
-    const [successMessage, setSuccessMessage] = useState("")
     const { addToast } = useToast();
 
     const {
