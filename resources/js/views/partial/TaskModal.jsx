@@ -2,10 +2,13 @@ import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import api from "../../axios/api";
 import { useToast } from "../../context/ToastContext";
+import { useNavigate } from "react-router-dom";
+import routes from "../../router/routes";
 
 function TaskModal() {
 
     const { addToast } = useToast();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -31,6 +34,7 @@ function TaskModal() {
 
             console.log(response.data)
             closeModal()
+            navigate(routes.tasks)
         } catch (error) {
             addToast("Errore durante la creazione della task", "error");
             console.error(error.response.data)
