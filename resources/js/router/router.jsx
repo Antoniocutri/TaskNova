@@ -8,6 +8,7 @@ import RegisterPage from "../views/auth/RegisterPage";
 import ProtectedRoute from "../components/middlware/ProtectedRoutes";
 import GuestRoute from "../components/middlware/GuestRoutes";
 import TasksPage from "../views/TasksPage";
+import { getAllTasks } from "./loader";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
                     {
                         path: routes.tasks,
                         Component: TasksPage,
+                        loader: getAllTasks,
                     },
                 ],
             },
