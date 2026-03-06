@@ -5,10 +5,10 @@ import Layout from "../components/layouts/Layout";
 import routes from "./routes";
 import LoginPage from "../views/auth/LoginPage";
 import RegisterPage from "../views/auth/RegisterPage";
-import ProtectedRoute from "../components/middlware/ProtectedRoutes";
-import GuestRoute from "../components/middlware/GuestRoutes";
 import TasksPage from "../views/TasksPage";
 import { getAllTasks } from "./loader";
+import ProtectedRoute from "../middlware/ProtectedRoutes";
+import GuestRoute from "../middlware/GuestRoutes";
 
 const router = createBrowserRouter([
     {

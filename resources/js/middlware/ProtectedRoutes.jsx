@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-import routes from "../../router/routes";
+import { UserContext } from "../context/UserContext";
+import routes from "../router/routes";
 
 export default function ProtectedRoute({ children }) {
     const { user, loading } = useContext(UserContext);
