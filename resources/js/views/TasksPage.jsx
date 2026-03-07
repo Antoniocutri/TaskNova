@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
-import ReactDOM from "react-dom/client";
 import { useLoaderData } from "react-router-dom";
 import TaskFilters from "../components/TaskComponents/TaskFilter";
-import TaskTable from "../components/TaskComponents/TaskTable";
+import TaskCard from "../components/TaskComponents/TaskCard";
 
 function TasksPage() {
 
     const tasks = useLoaderData()
-    console.log(tasks.data.data)
+    console.log(tasks)
 
     const [filters, setFilters] = useState({
         status:"",
@@ -23,7 +22,13 @@ function TasksPage() {
                     setFilters={setFilters}
                 />
 
-                <TaskTable tasks={tasks.data.data}/>
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {tasks.data.data.map(task => (
+                        <TaskCard key={task.id} task={task}/>
+                    ))}
+                </div>
+
+                
             </div>
         </>
     )
