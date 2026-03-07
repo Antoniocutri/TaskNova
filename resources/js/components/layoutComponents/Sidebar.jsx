@@ -27,7 +27,7 @@ export default function Sidebar() {
 
     return (
         <>
-        <div className="hidden md:flex flex-col justify-between h-screen w-52 bg-slate-900 text-slate-200 shadow-lg">
+        <div className="hidden md:flex flex-col justify-between min-h-screen h-full w-52 bg-slate-900 text-slate-200 shadow-lg">
 
             {/* Top Section */}
             <div>

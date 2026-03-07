@@ -37,6 +37,7 @@ export default function TaskFilters({ filters, setFilters }) {
                         <option value="0">Da fare</option>
                         <option value="1">In corso</option>
                         <option value="2">Completata</option>
+                        <option value="3">Scaduta</option>
                     </select>
 
                     {/* priority */}

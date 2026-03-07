@@ -22,7 +22,7 @@ class TaskController extends Controller
         $tasks = Auth::user()
             ->tasks()
             ->orderBy('due_date')
-            ->paginate(8);
+            ->get();
         return ApiResponseClass::sendResponse(TaskResource::collection($tasks),'',200);
     }
 
