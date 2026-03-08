@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Classes\ApiResponseClass;
+use App\Http\Requests\TaskFilterRequest;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Repositories\TaskRepository;
-use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -15,14 +15,28 @@ class TaskController extends Controller
     public function __construct(protected TaskRepository $taskRepository){}
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource filtering by status, priority and name
      */
-    public function index()
+    public function index(TaskFilterRequest $request)
     {
-        $tasks = Auth::user()
-            ->tasks()
-            ->orderBy('due_date')
-            ->get();
+        $request->validated();
+
+        $query = $request->user()->tasks()->getQuery();
+
+        if (!empty($filters['status'])) {
+            $query->where('status', $filters['status']);
+        }
+
+        if (!empty($filters['priority'])) {
+            $query->where('priority', $filters['priority']);
+        }
+
+        if (!empty($filters['title'])) {
+            $query->where('title', 'like', $filters['title'] . '%');
+        }
+
+        $tasks = $query->orderBy('due_date')->get();
+
         return ApiResponseClass::sendResponse(TaskResource::collection($tasks),'',200);
     }
 
