@@ -24,7 +24,7 @@ export default function Navbar() {
                 <div className="flex gap-2">
 
                     <p className="text-lg text-blue-100">
-                        Benvenuto, <span className="font-semibold text-white">{user.name}</span>
+                        Benvenuto, <span className="font-semibold text-white">{user?.name}</span>
                     </p>
 
                 </div>

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../../context/ToastContext";
 import { useForm } from "react-hook-form";
-import { Plus } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useEffect } from "react";
+import api from "../../../axios/api";
+import routes from "../../../router/routes";
 
 
 function EditModal({ task, modalId }) {
@@ -43,9 +45,9 @@ function EditModal({ task, modalId }) {
 
     
     const onSubmit = async (data) => {
-        console.log(data)
+        console.log(task.id)
         try {
-            const response = await api.put('/api/tasks', data)
+            const response = await api.put('/api/tasks/'+ task.id, data)
 
             console.log(response.data)
 
@@ -55,7 +57,7 @@ function EditModal({ task, modalId }) {
             addToast("Task modificato correttamente!");
         } catch (error) {
             addToast("Errore durante la creazione della task", "error");
-            console.error(error.response.data)
+            console.error(error.message)
         }
         
     };
@@ -171,8 +173,8 @@ function EditModal({ task, modalId }) {
                                 type="submit"
                                 className="btn btn-primary"
                                 >
-                                <Plus size={18}/>
-                                Aggiungi Task
+                                <Pencil size={18}/>
+                                Modifica Task
                             </button>
 
                         </div>
