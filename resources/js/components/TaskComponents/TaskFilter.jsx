@@ -1,21 +1,34 @@
 import { FaSearch } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import routes from "../../router/routes";
 
-export default function TaskFilters({ filters, setFilters }) {
+export default function TaskFilters({ filters, setSearchParams  }) {
+    const navigate = useNavigate();
 
     const handleChange = (key, value) => {
-        setFilters({
-            ...filters,
-            [key]: value
-        })
+
+        const params = new URLSearchParams()
+
+        if (key === "status") 
+            params.set("status", value)
+        else if (filters.status) 
+            params.set("status", filters.status)
+
+        if (key === "priority") 
+            params.set("priority", value)
+        else if (filters.priority) 
+            params.set("priority", filters.priority)
+
+        if (key === "title") 
+            params.set("title", value)
+        else if (filters.title)
+            params.set("title", filters.title)
+
+        setSearchParams(params)
     }
 
     const resetFilter = () => {
-        setFilters({
-            status: "",
-            priority: "",
-            title: ""
-        })
+        navigate(routes.tasks)
     }
 
     return (
@@ -62,7 +75,6 @@ export default function TaskFilters({ filters, setFilters }) {
                         onChange={(e)=>handleChange("title", e.target.value)}
                         className="input w-24 md:w-auto"
                     />
-                    <Link className="btn btn-square me-6" to={`/search/${filters.title || ""}`}><FaSearch/></Link>
 
                     {/*Reset Filter */}
                     <button

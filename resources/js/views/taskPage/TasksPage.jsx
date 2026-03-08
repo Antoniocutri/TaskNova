@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import TaskFilters from "../../components/TaskComponents/TaskFilter";
 import TaskCard from "../../components/TaskComponents/TaskCard";
 import { HiOutlineClipboardList } from "react-icons/hi"
@@ -7,23 +7,24 @@ import { HiOutlineClipboardList } from "react-icons/hi"
 function TasksPage() {
 
     const tasks = useLoaderData()
-    console.log(tasks.data.data)
 
-    const [filters, setFilters] = useState({
-        status:"",
-        priority:"",
-        title:"",
-    })
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const filters = {
+        status: searchParams.get("status") || "",
+        priority: searchParams.get("priority") || "",
+        title: searchParams.get("title") || "",
+    }
 
     return(
         <>
             <div className="p-6">
                 <TaskFilters
                     filters={filters}
-                    setFilters={setFilters}
+                    setSearchParams={setSearchParams}
                 />
 
-            {tasks.data.data.length === 0 ? (
+            {tasks.data?.data?.length === 0 ? (
 
                 <div className="flex flex-col items-center justify-center mt-20 text-center">
                     
@@ -31,7 +32,7 @@ function TasksPage() {
                         <HiOutlineClipboardList className="w-10 h-10 text-base-content/60" />
                     </div>
 
-                    <h2 className="text-lg font-semibold">Nessun task creato</h2>
+                    <h2 className="text-lg font-semibold">Nessun task trovato</h2>
                     
                     <p className="text-sm text-base-content/60 mt-1">
                         Crea il tuo primo task per iniziare
