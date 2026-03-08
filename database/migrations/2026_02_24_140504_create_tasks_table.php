@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(1);
             $table->date('due_date');
-            $table->unsignedTinyInteger('priority')->default(0);
+            $table->unsignedTinyInteger('priority')->default(1);
 
             // foreign key
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();

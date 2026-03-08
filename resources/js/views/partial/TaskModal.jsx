@@ -100,9 +100,9 @@ function TaskModal() {
                                         valueAsNumber: true
                                     })}>
                                     
-                                    <option value="0" defaultValue>Da fare</option>
-                                    <option value="1">In corso</option>
-                                    <option value="2">Completato</option>
+                                    <option value="1" defaultValue>Da fare</option>
+                                    <option value="2">In corso</option>
+                                    <option value="3">Completato</option>
                                 </select>
                             </div>
 
@@ -118,9 +118,9 @@ function TaskModal() {
                                         valueAsNumber: true
                                     })}>
 
-                                    <option value="0" defaultValue>Bassa</option>
-                                    <option value="1">Media</option>
-                                    <option value="2">Alta</option>
+                                    <option value="1" defaultValue>Bassa</option>
+                                    <option value="2">Media</option>
+                                    <option value="3">Alta</option>
                                 </select>
                             </div>
                         </div>

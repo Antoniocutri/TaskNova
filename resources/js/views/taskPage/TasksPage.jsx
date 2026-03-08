@@ -41,7 +41,7 @@ function TasksPage() {
                 </div>
             ) : (
                 <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                    {tasks.data.data.map(task => (
+                    {tasks.data?.data?.map(task => (
                         <TaskCard key={task.id} task={task}/>
                     ))}
                 </div>

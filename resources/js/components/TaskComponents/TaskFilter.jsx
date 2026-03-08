@@ -49,10 +49,10 @@ export default function TaskFilters({ filters, setSearchParams  }) {
                         onChange={(e)=>handleChange("status", e.target.value)}
                     >
                         <option value="">Stato</option>
-                        <option value="0">Da fare</option>
-                        <option value="1">In corso</option>
-                        <option value="2">Completata</option>
-                        <option value="3">Scaduta</option>
+                        <option value="1">Da fare</option>
+                        <option value="2">In corso</option>
+                        <option value="3">Completata</option>
+                        <option value="4">Scaduta</option>
                     </select>
 
                     {/* priority */}
@@ -62,9 +62,9 @@ export default function TaskFilters({ filters, setSearchParams  }) {
                         onChange={(e)=>handleChange("priority", e.target.value)}
                     >
                         <option value="">Priorità</option>
-                        <option value="0">Bassa</option>
-                        <option value="1">Media</option>
-                        <option value="2">Alta</option>
+                        <option value="1">Bassa</option>
+                        <option value="2">Media</option>
+                        <option value="3">Alta</option>
                     </select>
 
                     {/* search by title */}

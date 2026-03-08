@@ -4,7 +4,7 @@ namespace App\Enum;
 
 enum TaskPriority:int
 {
-    case low = 0 ;
-    case medium = 1;
-    case high = 2;
+    case low = 1 ;
+    case medium = 2;
+    case high = 3;
 }

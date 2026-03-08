@@ -8,7 +8,7 @@ export default function TaskCard({ task }) {
     const deleteModalId = `delete_task_${task.id}`
     const editModalId = `edit_task_${task.id}`
 
-    const completed = task.status === 2
+    const completed = task.status === 3
 
     return (
         <>
@@ -53,25 +53,25 @@ export default function TaskCard({ task }) {
                 <div className="flex items-center gap-2 mt-3">
 
                     <div className={`badge ${
-                        task.priority === 2
+                        task.priority === 3
                             ? "badge-error"
-                            : task.priority === 1
+                            : task.priority === 2
                             ? "badge-warning"
                             : "badge-success"
                     }`}>
-                        {task.priority === 2 ? "Alta" : task.priority === 1 ? "Media" : "Bassa"}
+                        {task.priority === 3 ? "Alta" : task.priority === 2 ? "Media" : "Bassa"}
                     </div>
 
                     <div className={`badge ${
-                        task.status === 3
+                        task.status === 4
                             ? "badge-error"
-                            : task.status === 2
+                            : task.status === 3
                             ? "badge-success" 
-                            : task.status === 1 
+                            : task.status === 2 
                             ? "badge-info" 
                             : "badge-ghost"
                     }`}>
-                        {task.status === 3 ? "Scaduta" : task.status === 2 ? "Completata" : task.status === 1 ? "In corso" : "Da fare"}
+                        {task.status === 4 ? "Scaduta" : task.status === 3 ? "Completata" : task.status === 2 ? "In corso" : "Da fare"}
                     </div>
 
                     <span className="text-sm text-gray-500 ml-auto">
