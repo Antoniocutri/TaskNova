@@ -19,7 +19,7 @@ class TaskController extends Controller
      */
     public function index(TaskFilterRequest $request)
     {
-        $request->validated();
+        $filters = $request->validated();
 
         $query = $request->user()->tasks()->getQuery();
 
