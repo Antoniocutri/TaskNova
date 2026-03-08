@@ -1,5 +1,5 @@
 import { Pencil, Trash2 } from "lucide-react"
-import DeleteModal from "../../views/partial/DeleteModal"
+import DeleteModal from "../../views/taskPage/partial/DeleteModal"
 
 export default function TaskCard({ task }) {
 

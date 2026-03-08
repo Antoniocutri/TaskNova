@@ -1,7 +1,7 @@
-import api from "../../axios/api";
-import { useToast } from "../../context/ToastContext";
+import api from "../../../axios/api";
+import { useToast } from "../../../context/ToastContext";
 import { useNavigate } from "react-router-dom";
-import routes from "../../router/routes";
+import routes from "../../../router/routes";
 
 function DeleteModal({ task, modalId }) {
 
