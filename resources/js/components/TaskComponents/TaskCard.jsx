@@ -1,10 +1,12 @@
 import { Pencil, Trash2 } from "lucide-react"
 import DeleteModal from "../../views/taskPage/partial/DeleteModal"
+import EditModal from "../../views/taskPage/partial/EditModal"
 
 export default function TaskCard({ task }) {
 
     const formattedDate = new Date(task.due_date).toLocaleDateString('it-IT')
     const deleteModalId = `delete_task_${task.id}`
+    const editModalId = `edit_task_${task.id}`
 
     const completed = task.status === 2
 
@@ -81,7 +83,10 @@ export default function TaskCard({ task }) {
                 {/* actions */}
                 <div className="card-actions justify-end mt-3">
                     <button className="btn btn-ghost btn-sm" disabled={completed}>
-                        <Pencil size={16}/>
+                        <Pencil size={16}
+                        onClick={() => document.getElementById(editModalId).showModal()}
+                        />
+                        
                     </button>
 
                     <button 
@@ -97,6 +102,8 @@ export default function TaskCard({ task }) {
         </div>
         
         <DeleteModal task={task} modalId={deleteModalId} />
+
+        <EditModal task={task} modalId={editModalId}/>
         </>
     )
 }
