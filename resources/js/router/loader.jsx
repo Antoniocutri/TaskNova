@@ -1,8 +1,21 @@
 import api from "../axios/api";
 
-export async function getAllTasks() {
-    try {
-        const tasks = await api.get('api/tasks')
+export async function getAllTasks({ request }) {
+   
+    const url = new URL(request.url)
+
+    const status = url.searchParams.get("status")
+    const priority = url.searchParams.get("priority")
+    const title = url.searchParams.get("title")
+
+    const params = new URLSearchParams()
+
+    if (status) params.append("status", status)
+    if (priority) params.append("priority", priority)
+    if (title) params.append("title", title)
+        
+    try{
+        const tasks = await api.get(`/api/tasks?${params.toString()}`)
         console.log(tasks)
         return tasks
     } catch (error) {
