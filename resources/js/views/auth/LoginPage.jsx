@@ -33,7 +33,7 @@ export default function LoginPage() {
 
   return (
     <main className="h-screen flex justify-center items-center p-4">
-      <section className="bg-gray-700 rounded-2xl p-8 w-full max-w-md text-gray-100 ">
+      <section className="bg-slate-900 text-slate-200 rounded-2xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Accedi</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
