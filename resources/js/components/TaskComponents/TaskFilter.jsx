@@ -1,3 +1,5 @@
+import { FaSearch } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 export default function TaskFilters({ filters, setFilters }) {
 
@@ -12,7 +14,7 @@ export default function TaskFilters({ filters, setFilters }) {
         setFilters({
             status: "",
             priority: "",
-            due_date: "",
+            title: ""
         })
     }
 
@@ -52,17 +54,15 @@ export default function TaskFilters({ filters, setFilters }) {
                         <option value="2">Alta</option>
                     </select>
 
-                    {/* due date */}
-                    <select
-                        className="select select-bordered w-full md:w-44"
-                        value={filters.due_date}
-                        onChange={(e)=>handleChange("due_date", e.target.value)}
-                    >
-                        <option value="">Scadenza</option>
-                        <option value="today">Oggi</option>
-                        <option value="week">Questa settimana</option>
-                        <option value="expired">Scadute</option>
-                    </select>
+                    {/* search by title */}
+                    <input
+                        type="text"
+                        placeholder="Cerca per titolo.."
+                        value={filters.title}
+                        onChange={(e)=>handleChange("title", e.target.value)}
+                        className="input w-24 md:w-auto"
+                    />
+                    <Link className="btn btn-square me-6" to={`/search/${filters.title || ""}`}><FaSearch/></Link>
 
                     {/*Reset Filter */}
                     <button

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
+import { UserContext } from "../../context/UserContext";
 
 export default function Navbar() {
     const [slug, setSlug] = useState();
@@ -9,6 +10,9 @@ export default function Navbar() {
     const handleChange = (e) =>{
         setSlug(e.target.value)
     }
+
+    const {user} = useContext(UserContext)
+    console.log(user)
 
     return(
         <>
@@ -19,8 +23,9 @@ export default function Navbar() {
                 </div>
                 <div className="flex gap-2">
 
-                    <input type="text" placeholder="Cerca per titolo.." onChange={handleChange} className="input w-24 md:w-auto" />
-                    <Link className="btn btn-square me-6" to={`/search/${slug}`}><FaSearch/></Link>
+                    <p className="text-lg text-blue-100">
+                        Benvenuto, <span className="font-semibold text-white">{user.name}</span>
+                    </p>
 
                 </div>
             </nav>

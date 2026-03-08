@@ -12,7 +12,7 @@ function TasksPage() {
     const [filters, setFilters] = useState({
         status:"",
         priority:"",
-        due_date:"",
+        title:"",
     })
 
     return(
