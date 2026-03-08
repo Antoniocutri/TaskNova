@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "../../../context/ToastContext";
 import { useForm } from "react-hook-form";
 import { Plus } from "lucide-react";
+import { useEffect } from "react";
 
 
 function EditModal({ task, modalId }) {
@@ -17,6 +18,23 @@ function EditModal({ task, modalId }) {
     } = useForm({
         mode: "onBlur",
     });
+
+    const formatDateForInput = (date) => {
+        if (!date) return "";
+        return new Date(date).toISOString().split("T")[0];
+    };
+
+    useEffect(() => {
+        if (task) {
+            reset({
+                title: task.title,
+                description: task.description,
+                status: task.status,
+                priority: task.priority,
+                due_date: formatDateForInput(task.due_date),
+            });
+        }
+    }, [task, reset]);
 
     const closeModal = () => {
         document.getElementById(modalId).close()
