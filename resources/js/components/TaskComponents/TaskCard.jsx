@@ -82,11 +82,12 @@ export default function TaskCard({ task }) {
 
                 {/* actions */}
                 <div className="card-actions justify-end mt-3">
-                    <button className="btn btn-ghost btn-sm" disabled={completed}>
-                        <Pencil size={16}
+                    <button
+                        className="btn btn-ghost btn-sm"
+                        disabled={completed}
                         onClick={() => document.getElementById(editModalId).showModal()}
-                        />
-                        
+                    >
+                        <Pencil size={16} />
                     </button>
 
                     <button 
