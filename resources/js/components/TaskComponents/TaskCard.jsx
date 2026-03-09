@@ -1,14 +1,35 @@
 import { Pencil, Trash2 } from "lucide-react"
 import DeleteModal from "../../views/taskPage/partial/DeleteModal"
 import EditModal from "../../views/taskPage/partial/EditModal"
+import api from "../../axios/api"
+import { useRevalidator } from "react-router-dom";
 
 export default function TaskCard({ task }) {
+
+    const { revalidate } = useRevalidator();
 
     const formattedDate = new Date(task.due_date).toLocaleDateString('it-IT')
     const deleteModalId = `delete_task_${task.id}`
     const editModalId = `edit_task_${task.id}`
 
     const completed = task.status === 3
+
+    const toggleComplete = async () => {
+
+        //If staus is completed it will be changed in To do and the other way round
+        const newStatus = task.status === 3 ? 1 : 3;
+
+        try {
+
+            await api.patch('api/tasks/'+ task.id, {
+                status: newStatus
+            })
+
+            revalidate();
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 
     return (
         <>
@@ -27,8 +48,8 @@ export default function TaskCard({ task }) {
                     <input
                         type="checkbox"
                         className="checkbox checkbox-success mt-1"
-                        checked={completed}
-                        onChange={() => /*toggleComplete(task.id)*/ {}}
+                        defaultChecked={completed}
+                        onChange={toggleComplete}
                     />
 
                     <div className="flex-1">
