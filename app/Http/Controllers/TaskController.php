@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classes\ApiResponseClass;
 use App\Http\Requests\TaskFilterRequest;
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Repositories\TaskRepository;
@@ -66,7 +67,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         $task = $this->taskRepository->update($task, $request->validated());
 
