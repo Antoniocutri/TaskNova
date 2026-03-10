@@ -40,20 +40,16 @@ class TaskRepository implements RepositoryInterface
      *
      * @return object
      */
-    public function getStats():Task
+    public function getStats()
     {
-        throw new \Exception('Not implemented');
-    }
+        $tasks = Task::where('user_id', auth()->id());
 
-    /**
-     * Retrieve the most recently created tasks.
-     *
-     * @param int $limit Maximum number of tasks to retrieve.
-     * @return \Illuminate\Database\Eloquent\Collection<int, Task>
-     */
-    public function getRecentActivity():Collection
-    {
-        throw new \Exception('Not implemented');
+        return [
+            "total_tasks" => (clone $tasks)->count(),
+            "completed" => (clone $tasks)->where('status', 3)->count(),
+            "pending" => (clone $tasks)->whereIn('status', [1,2])->count(),
+            "overdue" => (clone $tasks)->where('status', 4)->count(),
+        ];
     }
 
     /**
