@@ -58,8 +58,12 @@ class TaskRepository implements RepositoryInterface
      * @param int $limit Maximum number of tasks to return.
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getDueSoon():Collection
+    public function getDueSoon($limit = 5):Collection
     {
-        throw new \Exception('Not implemented');
+        return Task::where('user_id', auth()->id())
+            ->whereNotIn('status', [3,4])
+            ->orderBy('due_date')
+            ->limit($limit)
+            ->get();
     }
 }
