@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\TaskStatus;
 use App\Interfaces\RepositoryInterface;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Collection;
@@ -46,9 +47,9 @@ class TaskRepository implements RepositoryInterface
 
         return [
             "total_tasks" => (clone $tasks)->count(),
-            "completed" => (clone $tasks)->where('status', 3)->count(),
-            "pending" => (clone $tasks)->whereIn('status', [1,2])->count(),
-            "overdue" => (clone $tasks)->where('status', 4)->count(),
+            "completed" => (clone $tasks)->where('status', TaskStatus::completed)->count(),
+            "pending" => (clone $tasks)->whereIn('status', [TaskStatus::pending, TaskStatus::inProgress])->count(),
+            "overdue" => (clone $tasks)->where('status', TaskStatus::expired)->count(),
         ];
     }
 
@@ -61,7 +62,7 @@ class TaskRepository implements RepositoryInterface
     public function getDueSoon($limit = 5):Collection
     {
         return Task::where('user_id', auth()->id())
-            ->whereNotIn('status', [3,4])
+            ->whereNotIn('status', [TaskStatus::completed, TaskStatus::expired])
             ->orderBy('due_date')
             ->limit($limit)
             ->get();
