@@ -23,3 +23,11 @@ export async function getAllTasks({ request }) {
         console.error(error.message)
     }
 }
+
+export async function getDashboardData() {
+    try {
+        return await api.get(routes.apiDashboard)
+    } catch (error) {
+        console.error(error.message)
+    }
+}

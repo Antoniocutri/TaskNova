@@ -5,7 +5,8 @@ const routes = {
     register: "/auth/register",
 
     //api
-    apiTasks: "api/tasks/"
+    apiTasks: "api/tasks/",
+    apiDashboard: "api/dashboard"
 }
 
 export default routes

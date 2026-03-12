@@ -5,7 +5,7 @@ import Layout from "../components/layouts/Layout";
 import routes from "./routes";
 import LoginPage from "../views/auth/LoginPage";
 import RegisterPage from "../views/auth/RegisterPage";
-import { getAllTasks } from "./loader";
+import { getAllTasks, getDashboardData } from "./loader";
 import ProtectedRoute from "../middlware/ProtectedRoutes";
 import GuestRoute from "../middlware/GuestRoutes";
 import TasksPage from "../views/taskPage/TasksPage";
@@ -20,7 +20,8 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: routes.home,
-                        Component: Homepage
+                        Component: Homepage,
+                        loader: getDashboardData,
                     },
                     {
                         path: routes.tasks,
