@@ -11,7 +11,7 @@ function DeleteModal({ task, modalId }) {
     const deleteTask = async (id) => {
         console.log(id)
         try {
-            const response = await api.delete('/api/tasks/'+ id)
+            const response = await api.delete(routes.apiTasks + id)
 
             addToast("Task Eliminato correttamente!", "error");
 

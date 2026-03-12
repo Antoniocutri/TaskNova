@@ -1,4 +1,5 @@
 import api from "../axios/api";
+import routes from "./routes";
 
 export async function getAllTasks({ request }) {
    
@@ -15,7 +16,7 @@ export async function getAllTasks({ request }) {
     if (title) params.append("title", title)
         
     try{
-        const tasks = await api.get(`/api/tasks?${params.toString()}`)
+        const tasks = await api.get(routes.apiTasks + '?'+ params.toString())
         console.log(tasks)
         return tasks
     } catch (error) {

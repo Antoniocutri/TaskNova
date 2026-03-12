@@ -3,6 +3,7 @@ import DeleteModal from "../../views/taskPage/partial/DeleteModal"
 import EditModal from "../../views/taskPage/partial/EditModal"
 import api from "../../axios/api"
 import { useRevalidator } from "react-router-dom";
+import routes from "../../router/routes";
 
 export default function TaskCard({ task }) {
 
@@ -21,7 +22,7 @@ export default function TaskCard({ task }) {
 
         try {
 
-            await api.patch('api/tasks/'+ task.id, {
+            await api.patch(routes.apiTasks + task.id, {
                 status: newStatus
             })
 

@@ -47,7 +47,7 @@ function EditModal({ task, modalId }) {
     const onSubmit = async (data) => {
         console.log(task.id)
         try {
-            const response = await api.put('/api/tasks/'+ task.id, data)
+            const response = await api.put(routes.apiTasks + task.id, data)
 
             console.log(response.data)
 

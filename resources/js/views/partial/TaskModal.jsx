@@ -28,7 +28,7 @@ function TaskModal() {
     const onSubmit = async (data) => {
         console.log(data)
         try {
-            const response = await api.post('/api/tasks', data)
+            const response = await api.post(routes.apiTasks, data)
 
             addToast("Task creato correttamente!");
 
