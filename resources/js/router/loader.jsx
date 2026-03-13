@@ -26,7 +26,8 @@ export async function getAllTasks({ request }) {
 
 export async function getDashboardData() {
     try {
-        return await api.get(routes.apiDashboard)
+        const response = await api.get(routes.apiDashboard)
+        return response.data
     } catch (error) {
         console.error(error.message)
     }
