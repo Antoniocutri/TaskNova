@@ -5,6 +5,14 @@ import { UserContext } from "../../context/UserContext";
 function Header( {stats} ) {
     console.log(stats.stats.total_tasks)
 
+    // define color to use in progress bar depending by percentage of task completed
+    function setColor() {
+        return stats.percentages.completed >= 50 ? "success" 
+                : stats.percentages.completed >= 30 ? "warning"
+                : "error"
+    }
+    const color = setColor()
+
     const {user} = useContext(UserContext)
 
     return(
@@ -45,11 +53,11 @@ function Header( {stats} ) {
 
                             <div className="stat">
                                 <p className="stat-title">Progresso</p>
-                                <p className="stat-value text-success text-lg">{stats.percentages.completed}%</p>
+                                <p className={`stat-value text-${color} text-lg`}>{stats.percentages.completed}%</p>
 
                                 <div className="stat-desc w-40 mt-2">
                                     <progress
-                                        className="progress progress-success w-full"
+                                        className={`progress progress-${color} w-full`}
                                         value={stats.percentages.completed}
                                         max="100"
                                     />
