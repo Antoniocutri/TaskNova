@@ -9,7 +9,7 @@ function Homepage() {
     return(
         <>
             <header className="m-5">
-                <Header stats={data.data} />
+                <Header stats={data?.data} />
             </header>
         </>
     )

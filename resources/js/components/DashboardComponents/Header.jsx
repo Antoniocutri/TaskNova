@@ -7,11 +7,26 @@ function Header( {stats} ) {
 
     // define color to use in progress bar depending by percentage of task completed
     function setColor() {
-        return stats.percentages.completed >= 50 ? "success" 
-                : stats.percentages.completed >= 30 ? "warning"
-                : "error"
+        if (stats.percentages.completed < 30) return "danger"
+        if (stats.percentages.completed < 50) return "warning"
+        return "success"
     }
     const color = setColor()
+
+    const colors = {
+        success: {
+            text: "text-success",
+            progress: "progress-success",
+        },
+        warning: {
+            text: "text-warning",
+            progress: "progress-warning",
+        },
+        danger: {
+            text: "text-error",
+            progress: "progress-error",
+        },
+    }
 
     const {user} = useContext(UserContext)
 
@@ -53,11 +68,11 @@ function Header( {stats} ) {
 
                             <div className="stat">
                                 <p className="stat-title">Progresso</p>
-                                <p className={`stat-value text-${color} text-lg`}>{stats.percentages.completed}%</p>
+                                <p className={`stat-value ${colors[color].text} text-lg`}>{stats.percentages.completed}%</p>
 
                                 <div className="stat-desc w-40 mt-2">
                                     <progress
-                                        className={`progress progress-${color} w-full`}
+                                        className={`progress ${colors[color].progress} w-full`}
                                         value={stats.percentages.completed}
                                         max="100"
                                     />
