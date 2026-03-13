@@ -26,7 +26,7 @@ class TaskRepository implements RepositoryInterface
             $query->where('title', 'like', $filters['title'] . '%');
         }
 
-        return $query->orderBy('due_date')->get();
+        return $query->orderBy('status')->orderBy('due_date')->get();
     }
 
     public function find($id)
