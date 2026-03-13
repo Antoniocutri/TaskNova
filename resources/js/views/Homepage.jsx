@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
-import ReactDOM from "react-dom/client";
 import { useLoaderData } from "react-router-dom";
+import Header from "../components/DashboardComponents/Header";
 
 function Homepage() {
 
@@ -9,7 +8,9 @@ function Homepage() {
     
     return(
         <>
-
+            <header className="m-5">
+                <Header stats={data.data} />
+            </header>
         </>
     )
 }
