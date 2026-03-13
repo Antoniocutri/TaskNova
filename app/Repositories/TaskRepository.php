@@ -5,13 +5,28 @@ namespace App\Repositories;
 use App\Enum\TaskStatus;
 use App\Interfaces\RepositoryInterface;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 class TaskRepository implements RepositoryInterface
 {
-    public function all()
+    public function all(User $user, $filters)
     {
-        return Task::all();
+        $query = $user->tasks()->getQuery();
+
+        if (!empty($filters['status'])) {
+            $query->where('status', $filters['status']);
+        }
+
+        if (!empty($filters['priority'])) {
+            $query->where('priority', $filters['priority']);
+        }
+
+        if (!empty($filters['title'])) {
+            $query->where('title', 'like', $filters['title'] . '%');
+        }
+
+        return $query->orderBy('due_date')->get();
     }
 
     public function find($id)

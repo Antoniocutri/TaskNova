@@ -21,22 +21,9 @@ class TaskController extends Controller
     public function index(TaskFilterRequest $request)
     {
         $filters = $request->validated();
+        $user = $request->user();
 
-        $query = $request->user()->tasks()->getQuery();
-
-        if (!empty($filters['status'])) {
-            $query->where('status', $filters['status']);
-        }
-
-        if (!empty($filters['priority'])) {
-            $query->where('priority', $filters['priority']);
-        }
-
-        if (!empty($filters['title'])) {
-            $query->where('title', 'like', $filters['title'] . '%');
-        }
-
-        $tasks = $query->orderBy('due_date')->get();
+        $tasks = $this->taskRepository->all($user, $filters);
 
         return ApiResponseClass::sendResponse(TaskResource::collection($tasks),'',200);
     }
