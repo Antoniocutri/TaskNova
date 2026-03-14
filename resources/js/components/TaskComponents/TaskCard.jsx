@@ -35,22 +35,51 @@ export default function TaskCard({ task }) {
                 status: newStatus
             })
 
+            addToast(message)
+
             revalidate();
         } catch (error) {
             console.log(error.message)
         }
     }
 
+    const statusStyle = overdue
+        ? "bg-error/10 border-error "
+        : completed
+        ? "bg-base-200 opacity-70"
+        : "bg-base-100";
+
+    const titleStyle = overdue
+        ? "text-error line-through"
+        : completed
+        ? "line-through text-gray-400"
+        : "";
+
     return (
         <>
         <div className={`
-            card border shadow-sm
+            card border shadow-sm relative
             transition-all duration-300 ease-out
             hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:border-primary
-            ${completed ? "bg-base-200 opacity-70" : "bg-base-100"}
+            ${statusStyle}
         `}>
 
+
+
             <div className="card-body group">
+
+                {/* Badge */}
+                {overdue && (
+                    <div className="absolute top-3 right-3 text-error text-2xl tooltip tooltip-error" data-tip="Task scaduta">
+                        <FaTriangleExclamation />
+                    </div>
+                )}
+
+                {completed && !overdue && (
+                    <div className="absolute top-3 right-3 text-success text-2xl tooltip tooltip-success" data-tip="Task Completata">
+                        <FaCircleCheck />
+                    </div>
+                )}
 
                 {/* title + checkbox */}
                 <div className="flex items-start gap-3">
@@ -65,7 +94,7 @@ export default function TaskCard({ task }) {
                     <div className="flex-1">
 
                         <h2 className={`card-title text-lg transition-all
-                            ${completed ? "line-through text-gray-400" : ""}
+                            ${titleStyle}
                         `}>
                             {task.title}
                         </h2>
@@ -115,7 +144,7 @@ export default function TaskCard({ task }) {
                 <div className="card-actions justify-end mt-3 opacity-0 group-hover:opacity-100 transition">
                     <button
                         className="btn btn-ghost btn-sm"
-                        disabled={completed}
+                        disabled={completed || overdue}
                         onClick={() => document.getElementById(editModalId).showModal()}
                     >
                         <Pencil size={16} />
