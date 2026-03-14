@@ -3,12 +3,11 @@ import { MdWavingHand } from "react-icons/md";
 import { UserContext } from "../../context/UserContext";
 
 function Header( {stats} ) {
-    console.log(stats.stats.total_tasks)
 
     // define color to use in progress bar depending by percentage of task completed
     function setColor() {
-        if (stats.percentages.completed < 30) return "danger"
-        if (stats.percentages.completed < 50) return "warning"
+        if (stats?.percentages.completed < 30) return "danger"
+        if (stats?.percentages.completed < 50) return "warning"
         return "success"
     }
     const color = setColor()
@@ -56,10 +55,10 @@ function Header( {stats} ) {
                                 </p>
 
                                 <p className="text-sm mt-1">
-                                    Hai <span className="font-semibold text-primary">{stats.stats.total_tasks} task</span> totali — 
-                                    <span className="font-semibold text-warning"> {stats.stats.completed} da completare</span>
-                                    {stats.stats.overdue > 0 && 
-                                       <span> — <span className="font-semibold text-error">{stats.stats.overdue} scadute</span></span>
+                                    Hai <span className="font-semibold text-primary">{stats?.stats.total_tasks} task</span> totali — 
+                                    <span className="font-semibold text-warning"> {stats?.stats.completed} da completare</span>
+                                    {stats?.stats.overdue > 0 && 
+                                       <span> — <span className="font-semibold text-error">{stats?.stats.overdue} scadute</span></span>
                                     }
                                 </p>
                             </div>
@@ -71,12 +70,12 @@ function Header( {stats} ) {
 
                             <div className="stat">
                                 <p className="stat-title">Progresso</p>
-                                <p className={`stat-value ${colors[color].text} text-lg`}>{stats.percentages.completed}%</p>
+                                <p className={`stat-value ${colors[color].text} text-lg`}>{stats?.percentages.completed}%</p>
 
                                 <div className="stat-desc w-40 mt-2">
                                     <progress
                                         className={`progress ${colors[color].progress} w-full`}
-                                        value={stats.percentages.completed}
+                                        value={stats?.percentages.completed}
                                         max="100"
                                     />
                                 </div>

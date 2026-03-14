@@ -2,11 +2,10 @@ import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export default function PieChart({percentage}) {
-    console.log(percentage)
 
     const [state, setState] = useState({
         
-        series: [percentage.pending, percentage.completed,  percentage.overdue ],
+        series: [percentage?.pending, percentage?.completed,  percentage?.overdue ],
         options: {
             chart: {
                 width: 380,
