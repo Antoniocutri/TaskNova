@@ -4,9 +4,12 @@ import EditModal from "../../views/taskPage/partial/EditModal"
 import api from "../../axios/api"
 import { useRevalidator } from "react-router-dom";
 import routes from "../../router/routes";
+import { useToast } from "../../context/ToastContext";
+import { FaCircleCheck, FaTriangleExclamation } from "react-icons/fa6";
 
 export default function TaskCard({ task }) {
 
+    const { addToast } = useToast();
     const { revalidate } = useRevalidator();
 
     const formattedDate = new Date(task.due_date).toLocaleDateString('it-IT')
@@ -14,11 +17,17 @@ export default function TaskCard({ task }) {
     const editModalId = `edit_task_${task.id}`
 
     const completed = task.status === 3
+    const overdue = task.status === 4
 
     const toggleComplete = async () => {
 
         //If staus is completed it will be changed in To do and the other way round
-        const newStatus = task.status === 3 ? 1 : 3;
+        const newStatus = completed ? 1 : 3;
+
+        const message = completed
+            ? "Hai modificato il task, devi rifarlo"
+            : "Complimenti, hai completato il task";
+        //const newStatus = task.status === 3 ? 1 : 3;
 
         try {
 
