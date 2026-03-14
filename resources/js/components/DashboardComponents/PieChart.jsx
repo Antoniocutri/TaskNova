@@ -3,9 +3,14 @@ import ReactApexChart from "react-apexcharts";
 
 export default function PieChart({percentage}) {
 
+    const series = [
+        percentage?.pending ?? 0,
+        percentage?.completed ?? 0,
+        percentage?.overdue ?? 0
+    ];
+
     const [state, setState] = useState({
         
-        series: [percentage?.pending, percentage?.completed,  percentage?.overdue ],
         options: {
             chart: {
                 width: 380,
@@ -29,13 +34,12 @@ export default function PieChart({percentage}) {
             }]
         },
         
-        
     });
 
     return (
         <div>
-            <div id="chart card bg-base-100 border border-base-200 shadow-sm p-5 m-5 ">
-                <ReactApexChart options={state.options} series={state.series} type="pie" width="100%" />
+            <div id="chart" className="card bg-base-100 border border-base-200 shadow-sm p-5 m-5">
+                <ReactApexChart options={state.options} series={series} type="pie" width="100%" />
             </div>
             <div id="html-dist"></div>
         </div>

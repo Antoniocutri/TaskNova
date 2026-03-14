@@ -30,3 +30,8 @@
 .text{
     color: var(--text);
 }
+
+.apexcharts-canvas:focus,
+.apexcharts-svg:focus {
+  outline: none;
+}
