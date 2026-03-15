@@ -38,7 +38,7 @@ export default function PieChart({percentage}) {
 
     return (
         <div>
-            <div id="chart" className="card bg-base-100 border border-base-200 shadow-sm p-5 m-5">
+            <div id="chart" className="card bg-base-300 border border-base-200 shadow-sm p-5 m-5">
                 <ReactApexChart options={state.options} series={series} type="pie" width="100%" />
             </div>
             <div id="html-dist"></div>
