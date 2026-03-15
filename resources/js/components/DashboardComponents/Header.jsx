@@ -56,7 +56,7 @@ function Header( {stats} ) {
 
                                 <p className="text-sm mt-1">
                                     Hai <span className="font-semibold text-primary">{stats?.stats.total_tasks} task</span> totali — 
-                                    <span className="font-semibold text-warning"> {stats?.stats.completed} da completare</span>
+                                    <span className="font-semibold text-warning"> {stats?.stats.pending} da completare</span>
                                     {stats?.stats.overdue > 0 && 
                                        <span> — <span className="font-semibold text-error">{stats?.stats.overdue} scadute</span></span>
                                     }
