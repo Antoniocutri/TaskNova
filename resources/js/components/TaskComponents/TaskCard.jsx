@@ -70,13 +70,13 @@ export default function TaskCard({ task }) {
 
                 {/* Badge */}
                 {overdue && (
-                    <div className="absolute top-3 right-3 text-error text-2xl tooltip tooltip-error" data-tip="Task scaduta">
+                    <div className="absolute top-3 right-3 text-error text-2xl tooltip tooltip-error tooltip-left" data-tip="Task scaduta">
                         <FaTriangleExclamation />
                     </div>
                 )}
 
                 {completed && !overdue && (
-                    <div className="absolute top-3 right-3 text-success text-2xl tooltip tooltip-success" data-tip="Task Completata">
+                    <div className="absolute top-3 right-3 text-success text-2xl tooltip tooltip-success tooltip-left" data-tip="Task Completata">
                         <FaCircleCheck />
                     </div>
                 )}
