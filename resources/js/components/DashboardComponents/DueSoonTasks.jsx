@@ -1,4 +1,4 @@
-import { FaExclamationTriangle, FaClock } from "react-icons/fa";
+import { FaExclamationTriangle, FaClock, FaCheckCircle } from "react-icons/fa";
 
 export default function DueSoonTasks({ tasks }) {
     console.log(tasks)
@@ -50,34 +50,49 @@ export default function DueSoonTasks({ tasks }) {
 
             <div className="card-body">
 
-                <ul className="space-y-2">
+                
 
-                    {tasks.map(task => {
-                        const style = getStyle(task.due_date)
+                    {!tasks || tasks.length === 0 ? (
 
-                        return (
-                            <li
-                                key={task.id}
-                                className="flex items-center justify-between hover:bg-base-300 px-3 py-2 rounded-lg transition"
-                            >
+                        <div className="flex flex-col items-center justify-center py-6 text-center opacity-70">
+                            
+                            <FaCheckCircle className="text-4xl text-success" />
 
-                                <div className={`flex items-center gap-2 ${style.color}`}>
-                                    {style.icon}
-                                    <span className=" font-medium">
-                                        {task.title}
-                                    </span>
-                                </div>
+                            <p className="mt-2 font-medium">
+                                Nessun task in scadenza
+                            </p>
 
-                                <span className={`text-xs ${style.color}`}>
-                                    {getLabel(task.due_date)}
-                                </span>
+                        </div>
 
-                            </li>
-                        )
-                    })}
+                    ) : (
+                        <ul className="space-y-2">
 
-                </ul>
+                            {tasks?.map(task => {
+                                const style = getStyle(task.due_date)
 
+                                return (
+                                    <li
+                                        key={task.id}
+                                        className="flex items-center justify-between hover:bg-base-300 px-3 py-2 rounded-lg transition"
+                                    >
+
+                                        <div className={`flex items-center gap-2 ${style.color}`}>
+                                            {style.icon}
+                                            <span className=" font-medium">
+                                                {task.title}
+                                            </span>
+                                        </div>
+
+                                        <span className={`text-xs ${style.color}`}>
+                                            {getLabel(task.due_date)}
+                                        </span>
+
+                                    </li>
+                                )
+                                
+                            })}
+                        </ul>
+                    )}
             </div>
         </div>
     )
