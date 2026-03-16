@@ -26,7 +26,7 @@ function Homepage() {
                                 Distribuzione dei task
                             </h2>
 
-                            <PieChart percentage={data?.data.percentages}/>
+                            <PieChart percentage={data?.data?.percentages}/>
                         </div>
 
                         <div className="text-center">
@@ -34,7 +34,7 @@ function Homepage() {
                                 <FaClock className="text-warning" /> Task in scadenza a breve
                             </h2>
 
-                            <DueSoonTasks tasks={data?.data.due_soon}/>
+                            <DueSoonTasks tasks={data?.data?.due_soon}/>
                         </div>
 
                     </div> 
