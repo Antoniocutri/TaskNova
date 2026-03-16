@@ -1,17 +1,14 @@
 import { useContext } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import routes from "../router/routes";
 
 export default function GuestRoute({ children }) {
-    const { user, loading } = useContext(UserContext);
-    const navigate = useNavigate()
-        
-    if (loading) return null;
+    const { user} = useContext(UserContext);        
 
     // If authenticated redirect to homepage
     if (user) {
-        navigate(routes.home)
+        return <Navigate to={routes.home} replace />;
     }
 
     return <Outlet/>;
