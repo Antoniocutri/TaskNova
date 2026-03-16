@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -19,8 +19,10 @@ export default function LoginPage() {
 
     const {login} = useContext(UserContext)
 
+    const [loading, setLoading] = useState(false);
     const onSubmit = async (e) => {
 
+      setLoading(true);
       await login({
         email: e.email,
         password: e.password,
@@ -29,10 +31,16 @@ export default function LoginPage() {
       console.log('fatto')
 
       navigate('/')
+      setLoading(false);
     };
 
   return (
     <main className="h-screen flex justify-center items-center p-4">
+       {loading && (
+        <div className="fixed inset-0 bg-black/25 flex justify-center items-center z-50">
+          <span className="loading loading-spinner loading-xl text-primary"></span>
+        </div>
+      )}
       <section className="bg-slate-900 text-slate-200 rounded-2xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Accedi</h1>
 

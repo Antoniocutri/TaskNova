@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 
 export default function RegisterPage() {
@@ -22,8 +22,9 @@ export default function RegisterPage() {
 
     const {signUp} = useContext(UserContext)
 
+    const [loading, setLoading] = useState(false);
     const onSubmit = async (e) =>{
-
+        setLoading(true);
         await signUp({
             name: e.name,
             email: e.email,
@@ -33,12 +34,18 @@ export default function RegisterPage() {
         console.log('ok')
 
         navigate('/')
+        setLoading(false);
     };
 
 
     return(
         <>
             <main className="h-screen flex justify-center items-center p-4">
+                       {loading && (
+                            <div className="fixed inset-0 bg-black/25 flex justify-center items-center z-50">
+                            <span className="loading loading-spinner loading-xl text-primary"></span>
+                            </div>
+                        )}
                 <section className="bg-slate-900 text-slate-200 rounded-2xl p-8 w-full max-w-md">
                     <h1 className="text-2xl font-bold text-center mb-6">Registrati</h1>
 

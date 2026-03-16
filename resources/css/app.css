@@ -35,3 +35,8 @@
 .apexcharts-svg:focus {
   outline: none;
 }
+
+.loading-xl{
+    width: 4rem;
+    height: 4rem;
+}
