@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enum\TaskPriority;
+use App\Enum\TaskStatus;
 use App\Models\User;
-use App\TaskPriority;
-use App\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
