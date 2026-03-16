@@ -3,12 +3,16 @@ import Header from "../components/DashboardComponents/Header";
 import PieChart from "../components/DashboardComponents/PieChart";
 import { FaChartPie, FaClock } from "react-icons/fa6";
 import DueSoonTasks from "../components/DashboardComponents/DueSoonTasks";
+import { useEffect } from "react";
 
 function Homepage() {
 
     const data = useLoaderData()
     console.log(data)
-    
+
+    useEffect(() => {
+    }, [data]);
+
     return(
         <>
             <header className="m-5">
