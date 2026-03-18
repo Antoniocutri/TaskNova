@@ -3,8 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Enum\TaskStatus;
+use App\Mail\ExpireTaskMail;
 use App\Models\Task;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ExpireTasks extends Command
 {
@@ -27,10 +30,18 @@ class ExpireTasks extends Command
      */
     public function handle()
     {
-        Task::whereNot('status', TaskStatus::completed->value)
+        $expiredTasks = Task::whereNot('status', TaskStatus::completed->value)
             ->where('due_date', '<', now())
-            ->update(['status' => TaskStatus::expired->value]);
+            ->get();
 
-        return Command::SUCCESS;
+        Log::info($expiredTasks);
+        foreach ($expiredTasks as $task) {
+            $task->update(['status' => TaskStatus::expired->value]);
+
+            Mail::to('hello@example.com')->queue(new ExpireTaskMail($task));
+        }
+            
+
+        return $this->info('completed');
     }
 }
