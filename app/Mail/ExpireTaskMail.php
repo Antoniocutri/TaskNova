@@ -38,7 +38,7 @@ class ExpireTaskMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.taskExpired',
+            markdown: 'email.task.expired',
         );
     }
 
