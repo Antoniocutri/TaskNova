@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t antonio0307/tasknova:latest .
+        run: docker build -t antonio0307/tasknova:latest -f docker/php/dockerfile .
 
       - name: Push Docker image
         run: docker push antonio0307/tasknova:latest
