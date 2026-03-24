@@ -1,83 +1,131 @@
-# TaskNova 
+# 🚀 TaskNova
 
-**TaskNova** è una web application per la gestione e il monitoraggio dei task personali, progettata per aiutare gli utenti a organizzare, filtrare e visualizzare le proprie attività quotidiane in modo semplice e interattivo.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
----
+TaskNova is a full-stack web application built with **Laravel** and **React**, designed to manage tasks efficiently with a scalable and modern architecture.
 
-## Screenshot
+## 📸 Preview
 
 ![Dashboard](./screenshots/dashboard.png)  
-*Dashboard principale con visualizzazione della distribuzione dei task*
+*Main dashboard with task distribution overview*
 
 ![Task List](./screenshots/taskPage.png)  
-*Lista dei task con filtri per stato, priorità e ricerca per titolo*
+*Task list with filters by status, priority, and title search*
 
 ---
 
-## Funzionalità principali
-
-- Creazione, modifica e cancellazione dei task (CRUD)  
-- Filtri dinamici per stato, priorità e ricerca per titolo  
-- Dashboard interattiva con grafici e statistiche    
-- API REST per integrazione tra frontend e backend  
-
----
-
-## Tecnologie utilizzate
-
-- **Frontend:** React, JavaScript, Tailwind CSS  
-- **Backend:** PHP, Laravel  
-- **Strumenti:** Git, Docker  
+## 📋 Table of Contents
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Getting Started](#-getting-started)
+- [CI/CD](#-cicd)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author)
+- [License](#-license)
 
 ---
 
-## Installazione e setup locale
+## 🧰 Tech Stack
 
-* **Clonare il repository:**
-    ```bash
-    git clone https://github.com/Antoniocutri/TaskNova
-    cd tasknova
-    ```
+* **Backend:** Laravel (PHP)
+* **Frontend:** React (Vite)
+* **Authentication:** Laravel Fortify
+* **Database:** MySQL
+* **Containerization:** Docker & Docker Compose
+* **CI/CD:** GitHub Actions
+* **Version Control:** Git & GitHub
 
-* **Installare le dipendenze backend:**
-    ```bash
-    composer install
-    ```
+---
 
-* **Configurare l'ambiente:**
-    Copia il file di esempio per creare il tuo file di configurazione e inserisci le credenziali del tuo database all'interno del nuovo file `.env`:
-    ```bash
-    cp .env.example .env
-    ```
+## 📦 Features
 
-* **Generare la chiave dell'applicazione:**
-    ```bash
-    php artisan key:generate
-    ```
+* **Task management system:** Create, edit, delete, and organize tasks efficiently.
+* **RESTful API:** Robust backend powered by Laravel.
+* **Modern UI:** Reactive and fast frontend built with React.
+* **Secure Authentication:** Login & registration flow handled seamlessly using Laravel Fortify.
+* **Containerized:** Ready to run anywhere with a fully Dockerized environment.
 
-* **Migrare il database:**
-    Crea le tabelle all'interno del tuo database:
-    ```bash
-    php artisan migrate
-    ```
+---
 
-* **Popolare il database (opzionale):**
-    ```bash
-    php artisan db:seed
-    ```
-    *(Nota: in alternativa puoi eseguire la migrazione e il seeding in un unico passaggio con il comando `php artisan migrate --seed`)*
+## 🚀 Getting Started
 
-* **Installare le dipendenze frontend e compilare gli asset:**
-    ```bash
-    npm install
-    npm run dev
-    ```
+Follow these steps to get a copy of the project up and running on your local machine.
 
-* **Avviare il server Laravel:**
-    Apri un nuovo terminale ed esegui:
-    ```bash
-    php artisan serve
-    ```
+### Prerequisites
 
-* **Visualizzare l'applicazione:**
-    Apri il browser e naviga su: [http://localhost:8000](http://localhost:8000)
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop) and [Git](https://git-scm.com/) installed on your system.
+
+### 1. Clone the repository & Environment Setup
+
+```bash
+git clone [https://github.com/Antoniocutri/TaskNova](https://github.com/Antoniocutri/TaskNova)
+cd TaskNova
+
+# Copy the example environment file
+cp .env.example .env
+```
+*(Configure your database credentials, App URL, and other variables in the `.env` file).*
+
+### 2. Run with Docker Compose (Recommended)
+
+Build and spin up the application:
+
+```bash
+docker-compose up --build -d
+```
+
+### 3. Finalize Laravel Setup
+
+*(Run this if your Docker setup doesn't automatically generate the key and migrate the database)*:
+
+```bash
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan migrate
+```
+
+The application will now be available at: 👉 **http://localhost:8080**
+
+---
+
+### 🐳 Run with pre-built Docker Image
+
+If you just want to run the application without cloning the source code, you can pull the pre-built image from Docker Hub:
+
+```bash
+docker pull antonio0307/tasknova:latest
+docker run -p 8080:80 antonio0307/tasknova:latest
+```
+
+---
+
+## 🔄 CI/CD
+
+This project uses **GitHub Actions** to automate the build and deployment process. The pipeline is configured to:
+* Automatically build the Docker image on every push.
+* Push the latest image directly to Docker Hub.
+
+---
+
+## 📌 Future Improvements
+
+- [ ] Role-based access control
+- [ ] Task collaboration (shared tasks)
+- [ ] Notifications system
+- [ ] UI/UX improvements
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Antonino Cutrì**
+* [GitHub](https://github.com/Antoniocutri)
+* [LinkedIn](linkedin.com/in/antoninocutri-8b0103179) 
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
