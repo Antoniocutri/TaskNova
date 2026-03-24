@@ -58,7 +58,7 @@ export default function RegisterPage() {
                                 name="name"
                                 className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
                                 {...register("name", {
-                                    required: "This film is required"
+                                    required: "Inserisci il nome"
                                 })}
                             />
                             {errors.name && (
@@ -73,7 +73,7 @@ export default function RegisterPage() {
                                 name="email"
                                 className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
                                 {...register("email", {
-                                    required: "This film is required"
+                                    required: "Inserisci l'email"
                                 })}
                             />
                             {errors.email && (
@@ -88,7 +88,7 @@ export default function RegisterPage() {
                                 name="password"
                                 className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
                                 {...register("password", {
-                                    required: "This film is required", 
+                                    required: "Inserisci la password", 
                                     minLength: 8,
                                 })}
                             />
@@ -104,7 +104,7 @@ export default function RegisterPage() {
                                 name="password_confirmation"
                                 className="w-full border rounded-xl p-3 focus:ring focus:outline-none"
                                 {...register("password_confirmation", {
-                                    required: "This film is required", 
+                                    required: "Questo campo è obbligatorio", 
                                     minLength: 8,
                                     validate: value =>
                                         value === password || "Le password devono coincidere"
