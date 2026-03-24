@@ -82,8 +82,8 @@ docker-compose up --build -d
 *(Run this if your Docker setup doesn't automatically generate the key and migrate the database)*:
 
 ```bash
-docker-compose exec app php artisan key:generate
-docker-compose exec app php artisan migrate
+docker-compose exec tasknova php artisan key:generate
+docker-compose exec tasknova php artisan migrate
 ```
 
 The application will now be available at: 👉 **http://localhost:8080**
